@@ -22,7 +22,6 @@ class windows:
         self.variable_1 = StringVar()
         label_1 = Label(self.panel,text="Instruccion: ").place(x=405, y=44)
         input_1 = Entry(self.panel,textvariable = self.variable_1, width=10).place(x=475, y=44)
-        print(self.variable_1)
         boton1 = Button(self.panel,
                              text="ACEPTAR",
                              width=8,height=2,

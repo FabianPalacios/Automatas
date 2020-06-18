@@ -1,3 +1,4 @@
+
 from tkinter import *
 from Control.controller import controller
 
@@ -7,16 +8,21 @@ class windows:
         self.ventana()        
         
         
+        
 # Metodo que crea una ventana e inserta un panel de trabajo
     def ventana(self):
         self.view = Tk()
-        self.control = controller() 
+        self.control = controller()
+        self.diseño()
+        self.labelAndInput()
+        self.view.mainloop()
+        
+#Metodo de diseño de la ventana 
+    def diseño(self):
         self.view.title("AUTOMATAS Y LENGUAJES FORMALES")
         self.view.geometry('1000x600+180+60')
         self.panel = Frame(self.view,width=1000, height=600).pack()
-        self.labelAndInput()
-        self.view.mainloop()
-
+         
 # Inserta al panel un label y una variable que resive un string
     def labelAndInput(self):               
         self.variable_1 = StringVar()

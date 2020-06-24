@@ -2,6 +2,7 @@
 from tkinter import *
 import tkinter as tk
 from Control.controller import controller
+import tkinter.messagebox
 
 class windows:     
 # Constructor de la ventana   
@@ -36,8 +37,7 @@ class windows:
         label_3 = Label(self.panel,text="Expresión Regular: ").place(x=370, y=106)
         input_3 = Entry(self.panel,textvariable = self.variable_3, width=25).place(x=475, y=106)
         
-        
-        
+        # Boton de accion        
         boton1 = Button(self.panel,
                              text="ACEPTAR",
                              width=8,height=2,
@@ -45,11 +45,23 @@ class windows:
                              command= self.accion
                              ).place(x=480,y=150)
     
+    # Evento de boton de accion
     def accion(self):
-        self.control.separadoLenguaje(self.variable_1.get())
-        caracter = tk.Toplevel(self.view)
-        caracter.geometry('500x150+420+250')
-        caracter.title("Caracteristicas")
+        # llamado de funcion para separar el lenguje
+        variableSeparada = self.control.separadoLenguaje(self.variable_1.get())        
+        # Retorno validacion correccion sintaxis
+        validador = self.control.validacionLexico(variableSeparada,self.variable_3.get())
+        self.accionValidacion(validador)
+        
+    # Funcion para realizar acciones despues de la validacion
+    def accionValidacion(self, bandera):
+        if bandera:
+            print('no hay errores')
+        else:
+            tkinter.messagebox.showerror("ERROR NOT FOUND",
+                                         "LA EXPRECIÓN NO CONCUERDA CON EL LENGUAJE O TIENE UN CARACTER ESPECIAL NO DEFINIDO")
+        
+
        
         
         

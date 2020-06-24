@@ -1,19 +1,14 @@
+
 from tkinter import *
 import tkinter as tk
-from tkinter import messagebox
-
 from Control.controller import controller
+import tkinter.messagebox
 
-from tkinter import ttk
+class windows:     
 
-class windows:
-    
-    
-    
 # Constructor de la ventana   
     def __init__(self):
-        self.ventana()
-        
+        self.ventana()                
         
 # Metodo que crea una ventana e inserta un panel de trabajo
     def ventana(self):
@@ -30,19 +25,46 @@ class windows:
         self.panel = Frame(self.view,width=1000, height=600).pack()
          
 # Inserta al panel un label y una variable que resive un string
-    def labelAndInput(self):
-        self.variable_1 = StringVar();
-        self.variable_2 = StringVar();
-        self.label_1 = Label(self.panel,text="Instruccion: ").place(x=20, y=44)
-        self.input_1 = Entry(self.panel,textvariable = self.variable_1, width=10).place(x=100, y=44)
-        self.btn =  Button(self.panel, text="ACEPTAR", width=20, height=1, 
-                           command= self.panel2, 
-                           background="SkyBlue2").place(x=200, y=42)
+    def labelAndInput(self):               
+        self.variable_1 = StringVar()
+        label_1 = Label(self.panel,text="Alfabeto: ").place(x=421, y=44)
+        input_1 = Entry(self.panel,textvariable = self.variable_1, width=25).place(x=475, y=44)
         
+        self.variable_2 = StringVar()
+        label_2 = Label(self.panel,text="Estados: ").place(x=425, y=75)
+        input_2 = Entry(self.panel,textvariable = self.variable_2, width=25).place(x=475, y=75)
         
+        self.variable_3 = StringVar()
+        label_3 = Label(self.panel,text="Expresión Regular: ").place(x=370, y=106)
+        input_3 = Entry(self.panel,textvariable = self.variable_3, width=25).place(x=475, y=106)
+        
+        # Boton de accion        
+        boton1 = Button(self.panel,
+                             text="ACEPTAR",
+                             width=8,height=2,
+                             background="SkyBlue2",
+                             command= self.accion
+                             ).place(x=480,y=150)
     
+    # Evento de boton de accion
+    def accion(self):
+        # llamado de funcion para separar el lenguje
+        variableSeparada = self.control.separadoLenguaje(self.variable_1.get())        
+        # Retorno validacion correccion sintaxis
+        validador = self.control.validacionLexico(variableSeparada,self.variable_3.get())
+        self.accionValidacion(validador)
         
-    
+    # Funcion para realizar acciones despues de la validacion
+    def accionValidacion(self, bandera):
+        if bandera:
+            print('no hay errores')
+        else:
+            tkinter.messagebox.showerror("ERROR NOT FOUND",
+                                         "LA EXPRECIÓN NO CONCUERDA CON EL LENGUAJE O TIENE UN CARACTER ESPECIAL NO DEFINIDO")
+        
+
+
+"""
     def panel2(self):
         if (self.variable_1.get() != ''):
             alfabeto = self.control.separadoLenguaje(self.variable_1.get())
@@ -52,11 +74,13 @@ class windows:
             self.label_2 = Label(self.panel,text="Instruccion: ").place(x=200, y=80)
             self.input_2 = Entry(self.panel,textvariable = self.variable_2, width=10).place(x=200, y=100)
             
-##print(comboExample.get(), ' ',self.variable_2.get())
+            print(comboExample.get(), ' ',self.variable_2.get())
 
         else:
             messagebox.showinfo(message="EL ALFABETO NO ES CORRECTO", title="ERROR")
-
-   
+"""
+       
+        
         
     
+

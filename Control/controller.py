@@ -4,4 +4,11 @@ class controller:
     
     def separadoLenguaje(self, lenguaje):
         separado  = lenguaje.split("-")
-        print(separado)
+        return separado
+    
+    def valores(self, clave, valor):
+        print(clave)
+        print(valor)
+   
+        
+        

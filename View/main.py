@@ -1,9 +1,9 @@
-from View.windows import windows
+from View.Windows import Windows
 
-class principal:
+class Principal:
     
     def main():
-        vista = windows()
+        vista = Windows()
         
     
     if __name__ =="__main__":

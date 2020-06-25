@@ -74,7 +74,7 @@ class Windows:
     def ayuda1(self):
         tkinter.messagebox.showinfo("AYUDA ALFABETO",
                                          "EL ALFABETO DEBE SER ESCRITO SIN ESTACIO Y PRECEDIDO DE RAYA AL MEDIO O GUIÓN."+'\n\n'+"EJEMPLO:"
-                                         +"   A-B-C-D-E-F")
+                                         +"   A - B - C - D - E - F")
     def ayuda2(self):
         tkinter.messagebox.showinfo("AYUDA EXPRECION REGULAR ",
                                          "CARACTERES ESPECILAES: ' ( ', ' ) ', ' + ', ' ? ', ' * ' , ' | ', ' . ', ' & '."+"\n\n"+

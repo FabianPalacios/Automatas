@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-class controller:
+class Controller:
     # Separa el lenguaje incertado por el usuario
     def separadoLenguaje(self, lenguaje):
         separado  = lenguaje.split("-")

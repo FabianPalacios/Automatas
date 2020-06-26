@@ -1,10 +1,10 @@
-from View.windows import windows
+from View.Windows import Windows
 
 class principal:
     
-    def main():
-        vista = windows()
+    def Main():
+        vista = Windows()
         
     
     if __name__ =="__main__":
-        main()
+        Main()

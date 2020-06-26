@@ -1,10 +1,10 @@
 
 from tkinter import *
 import tkinter as tk
-from Control.controller import controller
+from Control.Controller import Controller
 import tkinter.messagebox
 
-class windows:     
+class Windows:     
 
 # Constructor de la ventana   
     def __init__(self):
@@ -13,7 +13,7 @@ class windows:
 # Metodo que crea una ventana e inserta un panel de trabajo
     def ventana(self):
         self.view = Tk()
-        self.control = controller()
+        self.control = Controller()
         self.diseño()
         self.labelAndInput()
         self.view.mainloop()

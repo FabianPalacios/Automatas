@@ -1,22 +1,13 @@
 
 from tkinter import *
 import tkinter as tk
-<<<<<<< HEAD
 from Control.Controller import Controller
+from Control.Afnd import Afnd
+
+from Control.Graph import Graph
 import tkinter.messagebox
 
 class Windows:     
-
-=======
-<<<<<<< HEAD
-from Control.controller import controller
-=======
-from Control.Controller import Controller
->>>>>>> 05ff820a8901e31949b8b81868b4ec0ef4cb80c1
-import tkinter.messagebox
-
-class Windows:     
->>>>>>> master
 # Constructor de la ventana   
     def __init__(self):
         self.ventana()                
@@ -25,6 +16,8 @@ class Windows:
     def ventana(self):
         self.view = Tk()
         self.control = Controller()
+        self.automataFND = Afnd()
+        self.grafico = Graph()
         self.diseño()
         self.labelAndInput()
         self.botones()
@@ -39,26 +32,6 @@ class Windows:
 # Inserta al panel un label y una variable que resive un string
     def labelAndInput(self):               
         self.variable_1 = StringVar()
-<<<<<<< HEAD
-        label_1 = Label(self.panel,text="Alfabeto: ").place(x=421, y=44)
-        input_1 = Entry(self.panel,textvariable = self.variable_1, width=25).place(x=475, y=44)
-        
-        self.variable_2 = StringVar()
-        label_2 = Label(self.panel,text="Estados: ").place(x=425, y=75)
-        input_2 = Entry(self.panel,textvariable = self.variable_2, width=25).place(x=475, y=75)
-        
-        self.variable_3 = StringVar()
-        label_3 = Label(self.panel,text="Expresión Regular: ").place(x=370, y=106)
-        input_3 = Entry(self.panel,textvariable = self.variable_3, width=25).place(x=475, y=106)
-        
-        # Boton de accion        
-        boton1 = Button(self.panel,
-                             text="ACEPTAR",
-                             width=8,height=2,
-                             background="SkyBlue2",
-                             command= self.accion
-                             ).place(x=480,y=150)
-=======
         label_1 = Label(self.panel,text="Alfabeto: ").place(x=121, y=44)
         input_1 = Entry(self.panel,textvariable = self.variable_1, width=25).place(x=175, y=44)
         
@@ -82,7 +55,7 @@ class Windows:
         boton3 = Button(self.panel, text="?", width=2,height=1, background="SkyBlue2", 
                         command= self.ayuda2).place(x=335,y=103)
 
->>>>>>> 05ff820a8901e31949b8b81868b4ec0ef4cb80c1
+
     
     # Evento de boton de accion
     def accion(self):
@@ -92,25 +65,26 @@ class Windows:
         validador = self.control.validacionLexico(variableSeparada,self.variable_3.get())
         self.accionValidacion(validador)
         
+        
+        
     # Funcion para realizar acciones despues de la validacion
     def accionValidacion(self, bandera):
-<<<<<<< HEAD
-        if bandera:
-            print('no hay errores')
-=======
-        print(bandera)
+        
         if bandera:
             exprecion = self.variable_3.get()
             Arbol = self.control.construirArbolAnalisis(exprecion)
-            print(exprecion)
+            print(self.variable_3.get())
             self.control.postorden(Arbol)
->>>>>>> 05ff820a8901e31949b8b81868b4ec0ef4cb80c1
+            
+            print(self.control.x)  
+            
+            self.automataFND.thompson(self.control.x)
+            print(self.automataFND.lista_Trans)
         else:
             tkinter.messagebox.showerror("ERROR NOT FOUND",
                                          "LA EXPRECIÓN NO CONCUERDA CON EL LENGUAJE O TIENE UN CARACTER ESPECIAL NO DEFINIDO")
         
-<<<<<<< HEAD
-=======
+
     def ayuda1(self):
         tkinter.messagebox.showinfo("AYUDA ALFABETO",
                                          "EL ALFABETO DEBE SER ESCRITO SIN ESTACIO Y PRECEDIDO DE RAYA AL MEDIO O GUIÓN."+'\n\n'+"EJEMPLO:"
@@ -124,25 +98,8 @@ class Windows:
                                          "                  ( ( C | ( ( D . E ) | C ) ) . D )" + '\n' 
                                          "                  ( ( A | ( B . C ) ) . ( ( C | ( ( D . E ) | C ) ) . D ) )")   
         
-        
->>>>>>> 05ff820a8901e31949b8b81868b4ec0ef4cb80c1
 
 
-"""
-    def panel2(self):
-        if (self.variable_1.get() != ''):
-            alfabeto = self.control.separadoLenguaje(self.variable_1.get())
-            labelTop = Label(self.view, text = "Elegir").place(x=20, y=80)
-            comboExample = ttk.Combobox(self.view, values=alfabeto).place(x=20, y=100)
-            
-            self.label_2 = Label(self.panel,text="Instruccion: ").place(x=200, y=80)
-            self.input_2 = Entry(self.panel,textvariable = self.variable_2, width=10).place(x=200, y=100)
-            
-            print(comboExample.get(), ' ',self.variable_2.get())
-
-        else:
-            messagebox.showinfo(message="EL ALFABETO NO ES CORRECTO", title="ERROR")
-"""
        
         
         

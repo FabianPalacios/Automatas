@@ -1,26 +1,14 @@
 # -*- coding: utf-8 -*-
 
-<<<<<<< HEAD
-class Controller:
-=======
-<<<<<<< HEAD
-class controller:
-=======
+
 from Clases.pila import Pila
 from Clases.arbolBinario import ArbolBinario
 
 class Controller:
->>>>>>> 05ff820a8901e31949b8b81868b4ec0ef4cb80c1
->>>>>>> master
     # Separa el lenguaje incertado por el usuario
     def separadoLenguaje(self, lenguaje):
-        separado  = lenguaje.split("-")
-        return separado
-    
-    def valores(self, clave, valor):
-        print(clave)
-        print(valor)
-   
+        separador = lenguaje.split("-")
+        return separador
     
     # Separa la exprecion Regular ingresada por el usuario 
     #def separadorExprecionREgular(self, ExprecionRegular):
@@ -31,11 +19,7 @@ class Controller:
     # exprecion regular existan y retorna un true o false segun si encuentra los caracteres
     # o no
     def validacionLexico(self, lenguaje, exprecionRegular):        
-<<<<<<< HEAD
-        caracteresEspeciales = ['(',')','+','?','*','|','.']  
-=======
         caracteresEspeciales = ['(',')','+','?','*','|','.','&']  
->>>>>>> 05ff820a8901e31949b8b81868b4ec0ef4cb80c1
         encontrado = True        
         for x in lenguaje:
             caracteresEspeciales.append(x)        
@@ -44,8 +28,6 @@ class Controller:
                 encontrado = False
                 break       
         return encontrado
-<<<<<<< HEAD
-=======
     
     # Constrccion Arbol    
     def construirArbolAnalisis(self,expresionAgrupada):        
@@ -74,16 +56,15 @@ class Controller:
                 raise ValueError
         return arbolExpresion
     
+    x= []
+    j = []
     def postorden(self, arbol):
         if arbol != None:
             self.postorden(arbol.obtenerHijoIzquierdo())
             self.postorden(arbol.obtenerHijoDerecho())
-            print(arbol.obtenerValorRaiz())
+            self.x.append(arbol.obtenerValorRaiz())
+ 
 
     
-
+            
     
-
->>>>>>> 05ff820a8901e31949b8b81868b4ec0ef4cb80c1
-        
-

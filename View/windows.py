@@ -2,6 +2,9 @@
 from tkinter import *
 import tkinter as tk
 from Control.Controller import Controller
+from Control.Afnd import Afnd
+
+
 from Control.Graph import Graph
 import tkinter.messagebox
 
@@ -15,6 +18,8 @@ class Windows:
         self.view = Tk()
         self.control = Controller()
         self.grafo = Graph()
+        self.automataFND = Afnd()
+        self.grafico = Graph()
         self.diseño()
         self.labelAndInput()
         self.botones()
@@ -52,6 +57,7 @@ class Windows:
         boton3 = Button(self.panel, text="?", width=2,height=1, background="SkyBlue2", 
                         command= self.ayuda2).place(x=335,y=103)
 
+
     
     # Evento de boton de accion
     def accion(self):
@@ -65,21 +71,25 @@ class Windows:
         validador = self.control.validacionLexico(variableSeparada,self.variable_3.get())
         self.accionValidacion(validador)
         
+        
+        
     # Funcion para realizar acciones despues de la validacion
     def accionValidacion(self, bandera):
-        print(bandera)
+        
         if bandera:
             exprecion = self.variable_3.get()
             Arbol = self.control.construirArbolAnalisis(exprecion)
-            print(exprecion)
-            self.control.postorden(Arbol)
-            print(self.control.x)
+            print(self.variable_3.get())
+            self.control.postorden(Arbol)            
+            print(self.control.x)              
+            self.automataFND.thompson(self.control.x)
+            print(self.automataFND.lista_Trans)
 
-    
         else:
             tkinter.messagebox.showerror("ERROR NOT FOUND",
                                          "LA EXPRECIÓN NO CONCUERDA CON EL LENGUAJE O TIENE UN CARACTER ESPECIAL NO DEFINIDO")
         
+
     def ayuda1(self):
         tkinter.messagebox.showinfo("AYUDA ALFABETO",
                                          "EL ALFABETO DEBE SER ESCRITO SIN ESTACIO Y PRECEDIDO DE RAYA AL MEDIO O GUIÓN."+'\n\n'+"EJEMPLO:"
@@ -95,8 +105,7 @@ class Windows:
                                          "                  ( ( A | ( B . C ) )"+'\n'
                                          "                  ( ( C | ( ( D . E ) | C ) ) . D )" + '\n' 
                                          "                  ( ( A | ( B . C ) ) . ( ( C | ( ( D . E ) | C ) ) . D ) )")   
-    
-        
+
 
        
         

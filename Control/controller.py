@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 import pydot
 from Clases.pila import Pila
 from Clases.arbolBinario import ArbolBinario
@@ -52,6 +53,7 @@ class Controller:
                 raise ValueError
         return arbolExpresion
     
+
     x = []  
     #j = []
     def postorden(self, arbol):  
@@ -119,3 +121,4 @@ class Controller:
                 
             self.recorridoAnchura(arbol1, lp)
 """
+

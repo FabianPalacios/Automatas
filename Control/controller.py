@@ -1,18 +1,15 @@
 # -*- coding: utf-8 -*-
-
+import pydot
 from Clases.pila import Pila
 from Clases.arbolBinario import ArbolBinario
 
-class Controller:
+class Controller:   
+  
+        
     # Separa el lenguaje incertado por el usuario
     def separadoLenguaje(self, lenguaje):
         separador = lenguaje.split("-")
         return separador
-    
-    # Separa la exprecion Regular ingresada por el usuario 
-    #def separadorExprecionREgular(self, ExprecionRegular):
-    #    separador = ExprecionRegular.split("")
-    #    return separador
     
     # Incerta el lenguaje a los caracteres especiales y evalua que los caracteres de la
     # exprecion regular existan y retorna un true o false segun si encuentra los caracteres
@@ -55,15 +52,70 @@ class Controller:
                 raise ValueError
         return arbolExpresion
     
-    def postorden(self, arbol):
+    x = []  
+    #j = []
+    def postorden(self, arbol):  
+        #b = {}
+        #l = []
         if arbol != None:
             self.postorden(arbol.obtenerHijoIzquierdo())
-            self.postorden(arbol.obtenerHijoDerecho())
-            print(arbol.obtenerValorRaiz())
+            self.postorden(arbol.obtenerHijoDerecho())             
+            self.x.append(arbol.obtenerValorRaiz())            
+            
+"""           
+            
+            arbol2 = arbol.obtenerHijoIzquierdo()
+            arbol3 = arbol.obtenerHijoDerecho()
+            
 
-    
-
-    
-
-        
-
+            if arbol2 != None and arbol3 != None:
+                l.append(arbol2.obtenerValorRaiz())
+                l.append(arbol3.obtenerValorRaiz())                
+                b[str(arbol.obtenerValorRaiz())] = l
+                self.j.append(b)
+                
+            elif arbol2 != None and arbol3 is None:
+                l.append(arbol2.obtenerValorRaiz())
+                b[str(arbol.obtenerValorRaiz())] = l
+                self.j.append(b)
+            
+            elif arbol2 is None and arbol3 != None:
+                l.append(arbol3.obtenerValorRaiz())
+                b[str(arbol.obtenerValorRaiz())] = l
+                self.j.append(b)
+"""    
+"""
+    j1 = []           
+    def recorridoAnchura(self,arbol, lp = []):
+        b1 = {}
+        l1 = []
+        arbol1 = None
+        if arbol != None:           
+            arbol2 = arbol.obtenerHijoIzquierdo()
+            arbol3 = arbol.obtenerHijoDerecho()
+            
+            if arbol2 != None and arbol3 != None:
+                l1.append(arbol2.obtenerValorRaiz())
+                l1.append(arbol3.obtenerValorRaiz())
+                b1[str(arbol.obtenerValorRaiz())]=l1
+                lp.append(arbol2)
+                lp.append(arbol3)
+                self.j1.append(b1)
+                
+            elif arbol2 != None and arbol3 is None:
+                l1.append(arbol2.obtenerValorRaiz())
+                b1[str(arbol.obtenerValorRaiz())]=l1
+                lp.append(arbol2)
+                self.j1.append(b1)
+                
+            elif arbol2 is None and arbol3 != None:
+                l1.append(arbol3.obtenerValorRaiz())
+                b1[str(arbol.obtenerValorRaiz())]=l1
+                lp.append(arbol3)
+                self.j1.append(b1)
+            
+            if lp != []:
+                arbol1 = lp.pop(0)
+                
+            self.recorridoAnchura(arbol1, lp)
+"""

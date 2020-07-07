@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+    # -*- coding: utf-8 -*-
 
 import pydot
 from Clases.pila import Pila
@@ -17,18 +17,19 @@ class Controller:
     # o no
     def validacionLexico(self, lenguaje, exprecionRegular):        
         caracteresEspeciales = ['(',')','+','?','*','|','.','&']  
-        encontrado = True        
+        encontrado = True 
         for x in lenguaje:
             caracteresEspeciales.append(x)        
         for x in exprecionRegular:
             if x not in caracteresEspeciales:
                 encontrado = False
                 break       
+        
         return encontrado
     
     # Constrccion Arbol    
     def construirArbolAnalisis(self,expresionAgrupada):        
-        listaSimbolos = expresionAgrupada        
+        listaSimbolos = expresionAgrupada   
         pilaPadres = Pila()
         arbolExpresion = ArbolBinario('')
         pilaPadres.incluir(arbolExpresion)
@@ -50,7 +51,8 @@ class Controller:
             elif i == ')':
                 arbolActual = pilaPadres.extraer()
             else:
-                raise ValueError
+                raise ValueError    
+        
         return arbolExpresion
     
 

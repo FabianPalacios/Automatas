@@ -3,6 +3,7 @@ from tkinter import *
 import tkinter as tk
 from Control.Controller import Controller
 from Control.Afnd import Afnd
+from Control.Afd import Afd
 
 
 from Control.Graph import Graph
@@ -16,6 +17,7 @@ class Windows:
 # Metodo que crea una ventana e inserta un panel de trabajo
     def ventana(self):
         self.view = Tk()
+        self.automataAFD = Afd()
         self.control = Controller()
         self.grafo = Graph()
         self.automataFND = Afnd()
@@ -65,7 +67,7 @@ class Windows:
         variableSeparada = self.control.separadoLenguaje(self.variable_1.get())        
         # separado acciones 
         varSeparadaAccion = self.control.separadoLenguaje(self.variable_2.get())
-        print(varSeparadaAccion)
+        
         
         # Retorno validacion correccion sintaxis
         validador = self.control.validacionLexico(variableSeparada,self.variable_3.get())
@@ -79,11 +81,10 @@ class Windows:
         if bandera:
             exprecion = self.variable_3.get()
             Arbol = self.control.construirArbolAnalisis(exprecion)
-            print(self.variable_3.get())
             self.control.postorden(Arbol)            
             print(self.control.x)              
-            self.automataFND.thompson(self.control.x)
-            print(self.automataFND.lista_Trans)
+            #self.automataFND.thompson(self.control.x)
+            #print(self.automataFND.lista_Trans)
 
         else:
             tkinter.messagebox.showerror("ERROR NOT FOUND",
@@ -94,6 +95,7 @@ class Windows:
         tkinter.messagebox.showinfo("AYUDA ALFABETO",
                                          "EL ALFABETO DEBE SER ESCRITO SIN ESTACIO Y PRECEDIDO DE RAYA AL MEDIO O GUIÓN."+'\n\n'+"EJEMPLO:"
                                          +"   A - B - C - D - E - F") 
+        self.automataAFD.creatorAFD('0',0)
     
         
         

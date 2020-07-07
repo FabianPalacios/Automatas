@@ -4,8 +4,7 @@ from View.Windows import Windows
 class Principal:
     
     def main():
-        vista = Windows()
-        
+        vista = Windows()        
     
     if __name__ =="__main__":
         main()

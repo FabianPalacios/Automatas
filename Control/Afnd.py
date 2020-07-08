@@ -9,45 +9,60 @@ class Afnd:
     aux = []
     
     def suma (self,elem1, elem2):
+        
         ini = elem1
         fin = elem2
         
-        ini1 = self.pila_I.pop()
-        fin1 = self.pila_F.pop()
-        
-        self.lista_Trans.append([str(ini),'@',str(ini1)])
-        self.lista_Trans.append([str(fin1),'@',str(ini1)])
-        self.lista_Trans.append([str(fin1),'@',str(fin)])
-        
-        self.pila_I.append(ini)
-        self.pila_F.append(fin)
-        
-    def  interrogacion(self,elem1, elem2):
-         ini = elem1
-         fin = elem2
-         ini1 = self.pila_I.pop()
-         fin1 = self.pila_F.pop()
-         self.lista_Trans.append([str(ini),'@',str(ini1)])
-         self.lista_Trans.append([str(fin1),'@',str(fin)])
-         self.lista_Trans.append([str(ini),'@',str(fin)])
-         self.pila_I.append(ini)
-         self.pila_F.append(fin)
-    
-    def klean(self, elem1, elem2):
-        print(elem1, ' - ',elem2)
-        print(self.pila_I, 'pila-Inicial')
-        print(self.pila_F, 'pila-Inicial')
-        ini = elem1
-        fin = elem2
         ini1 = self.pila_I.pop()
         fin1 = self.pila_F.pop()
         ini2 = self.pila_I.pop()
         fin2 = self.pila_F.pop()
+        
+        self.lista_Trans.append([str(ini),'@',str(ini2)])
+        self.lista_Trans.append([str(fin2),'@',str(ini2)])
+        self.lista_Trans.append([str(fin2),'@',str(fin)])
+        
+        self.lista_Trans.append([str(fin),'@',str(ini1)])
+        
+        self.pila_I.append(ini)
+        self.pila_F.append(fin1)
+        
+    def  interrogacion(self,elem1, elem2):
+         print(elem1, ' - ',elem2)
+         print(self.pila_I)
+         print(self.pila_F)
+         
+         ini = elem1
+         fin = elem2
+         
+         ini1 = self.pila_I.pop()
+         fin1 = self.pila_F.pop()
+         ini2 = self.pila_I.pop()
+         fin2 = self.pila_F.pop()
+         
+         self.lista_Trans.append([str(ini),'@',str(fin)])
+         self.lista_Trans.append([str(ini),'@',str(ini2)])  
+         self.lista_Trans.append([str(fin2),'@',str(fin)])
+        
+         self.lista_Trans.append([str(fin),'@',str(ini1)])
+         
+         self.pila_I.append(ini)
+         self.pila_F.append(fin1)
+    
+    def klean(self, elem1, elem2):
+
+        ini = elem1
+        fin = elem2 
+        
+        ini1 = self.pila_I.pop()
+        fin1 = self.pila_F.pop()
+        ini2 = self.pila_I.pop()
+        fin2 = self.pila_F.pop()        
         self.lista_Trans.append([str(ini),'@',str(fin)])
         self.lista_Trans.append([str(ini),'@',str(ini2)])
         self.lista_Trans.append([str(fin2),'@',str(ini2)])   
         self.lista_Trans.append([str(fin2),'@',str(fin)])        
-        self.lista_Trans.append([str(fin),'@',str(ini1)])        
+        self.lista_Trans.append([str(fin),'@',str(ini1)])
         self.pila_I.append(ini)
         self.pila_F.append(fin1)
         
@@ -107,4 +122,5 @@ class Afnd:
                 cont = cont+2
                 cont2 = cont+1
             
+
                 

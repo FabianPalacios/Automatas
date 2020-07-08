@@ -18,13 +18,9 @@ class Windows:
     def ventana(self):
         self.view = Tk()
         self.automataAFD = Afd()
-        self.control = Controller()
-        
-        
-        self.automataFND = Afnd()
-        
-        self.grafico = Graph()
-        
+        self.control = Controller()        
+        self.automataFND = Afnd()        
+        self.grafico = Graph()        
         self.diseño()
         self.labelAndInput()
         self.botones()

@@ -95,7 +95,13 @@ class Windows:
         tkinter.messagebox.showinfo("AYUDA ALFABETO",
                                          "EL ALFABETO DEBE SER ESCRITO SIN ESTACIO Y PRECEDIDO DE RAYA AL MEDIO O GUIÓN."+'\n\n'+"EJEMPLO:"
                                          +"   A - B - C - D - E - F") 
-        self.automataAFD.creatorAFD('0',0)
+        #self.automataAFD.creatorAFD('0',0)
+        self.automataFND.thompson(self.control.x)
+        lista = self.automataFND.lista_Trans
+        aceptacion = self.automataFND.pila_F
+        inicial = self.automataFND.pila_I
+        print()
+        self.grafo.Conexiones(lista, aceptacion, inicial)
     
         
         

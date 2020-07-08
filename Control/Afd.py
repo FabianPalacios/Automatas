@@ -9,9 +9,7 @@ class Afd:
     
     biblioteca = {}
     recorridoLanda = []
-    def creatorAFD(self,inicial, salida, recorridos = []):
-        
-         
+    def creatorAFD(self,inicial, salida, recorridos = []):         
            
         recorrido = [['0','@','1'],['1','@','2'],['0','@','3'],['3','b','4']
                      ,['2','@','5'],['5','a','6']]
@@ -32,6 +30,9 @@ class Afd:
                 self.creatorAFD(ini, salida, recorridos)                
             
         else:
+            numero = [1,2,3,4,5,6]
+            c = numero.pop()
+            print(c)
             self.biblioteca[chr(65)] = self.recorridoLanda
             print(self.biblioteca)
             l1 = [1,2,3,4]

@@ -81,6 +81,22 @@ class Windows:
         if bandera:
             exprecion = self.variable_3.get()
             Arbol = self.control.construirArbolAnalisis(exprecion)
+
+            print(self.variable_3.get())
+            self.control.postorden(Arbol)
+                   
+            
+            lista = self.control.eliminarVacios(self.control.x)
+            
+            print(lista)
+            
+            self.automataFND.thompson(lista)
+            print(self.automataFND.lista_Trans)
+            print(self.automataFND.pila_I)
+            print(self.automataFND.pila_F)
+            
+            self.grafico.Conexiones(self.automataFND.lista_Trans, self.automataFND.pila_F,self.automataFND.pila_I )
+
             self.control.postorden(Arbol)            
             print(self.control.x)              
             #self.automataFND.thompson(self.control.x)

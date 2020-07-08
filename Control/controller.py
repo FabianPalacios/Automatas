@@ -57,14 +57,22 @@ class Controller:
     
 
     x = []  
-    #j = []
     def postorden(self, arbol):  
-        #b = {}
-        #l = []
         if arbol != None:
             self.postorden(arbol.obtenerHijoIzquierdo())
-            self.postorden(arbol.obtenerHijoDerecho())             
-            self.x.append(arbol.obtenerValorRaiz())            
+            self.postorden(arbol.obtenerHijoDerecho())
+            self.x.append(arbol.obtenerValorRaiz())
+        
+        
+    def eliminarVacios(self,lista):
+        aux = 0
+        for i in lista:
+            if i == '':
+                aux = lista.index(i)
+                lista.pop(aux)
+        return lista
+    
+       
             
 """           
             
@@ -82,6 +90,7 @@ class Controller:
                 l.append(arbol2.obtenerValorRaiz())
                 b[str(arbol.obtenerValorRaiz())] = l
                 self.j.append(b)
+>>>>>>> c6b5769f01da417c376bacada123cd3870c70ad9
             
             elif arbol2 is None and arbol3 != None:
                 l.append(arbol3.obtenerValorRaiz())

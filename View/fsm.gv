@@ -1,6 +1,7 @@
 digraph finite_state_machine {
 	rankdir=LR size="8,5"
 	ini [shape=point]
+<<<<<<< HEAD
 	ini -> 8
 	node [shape=doublecircle]
 	25
@@ -29,4 +30,20 @@ digraph finite_state_machine {
 	24 -> 25 [label=d]
 	23 -> 24 [label="@"]
 	8 -> 22 [label="@"]
+=======
+	ini -> 0
+	node [shape=doublecircle]
+	1
+	node [shape=circle]
+	0 -> 1 [label=a]
+	2 -> 3 [label=b]
+	4 -> 2 [label="@"]
+	3 -> 2 [label="@"]
+	3 -> 5 [label="@"]
+	6 -> 7 [label=c]
+	8 -> 6 [label="@"]
+	8 -> 4 [label="@"]
+	7 -> 9 [label="@"]
+	5 -> 9 [label="@"]
+>>>>>>> b928e009fe2038a54a422d4c93ad3d2eb26d7994
 }

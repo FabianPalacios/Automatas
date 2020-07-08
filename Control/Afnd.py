@@ -3,7 +3,6 @@ import sys
 class Afnd:
     
     lpos = []
-
     lista_Trans=[]
     pila_I=['n']
     pila_F=['n']	
@@ -87,7 +86,7 @@ class Afnd:
                 self.pila_I.append(cont)
                 self.pila_F.append(cont2)
                 cont = cont+2
-                cont2 = cont+2
+                cont2 = cont+1
             elif (c == '.'):
                 self.conc()
             elif (c == '|'):

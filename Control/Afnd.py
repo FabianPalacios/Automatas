@@ -35,23 +35,23 @@ class Afnd:
     
     def klean(self, elem1, elem2):
         print(elem1, ' - ',elem2)
-        print(self.pila_I)
-        print(self.pila_F)
+        print(self.pila_I, 'pila-Inicial')
+        print(self.pila_F, 'pila-Inicial')
         ini = elem1
         fin = elem2
         ini1 = self.pila_I.pop()
         fin1 = self.pila_F.pop()
+        ini2 = self.pila_I.pop()
+        fin2 = self.pila_F.pop()
         self.lista_Trans.append([str(ini),'@',str(fin)])
-        self.lista_Trans.append([str(ini),'@',str(ini1)])
-        self.lista_Trans.append([str(fin1),'@',str(ini1)])
-        self.lista_Trans.append([str(fin1),'@',str(fin)])
-        ##fin2 = self.pila_F.pop()
-        ##self.lista_Trans.append([str(fin2),'@',str(ini1)])
-        ##self.pila_F.append(fin2)
+        self.lista_Trans.append([str(ini),'@',str(ini2)])
+        self.lista_Trans.append([str(fin2),'@',str(ini2)])   
+        self.lista_Trans.append([str(fin2),'@',str(fin)])        
+        self.lista_Trans.append([str(fin),'@',str(ini1)])        
         self.pila_I.append(ini)
-        self.pila_F.append(fin)
+        self.pila_F.append(fin1)
         
-    
+# OR(|) CORREGIDO    
     def union(self,elem1,elem2):
         inicio = elem1
         f = elem2 
@@ -65,7 +65,8 @@ class Afnd:
         self.lista_Trans.append([str(f2),'@',str(f)])
         self.pila_I.append(inicio)
         self.pila_F.append(f)
-        
+
+# CONCATENACION CORREGIDA    
     def conc(self):
         ini1 = self.pila_I.pop()
         ini2 = self.pila_I.pop()
@@ -106,11 +107,4 @@ class Afnd:
                 cont = cont+2
                 cont2 = cont+1
             
-            print()
-            print(self.pila_I, 'inicial')
-            print()
-            print(self.pila_F, 'final')
-        print()
-        print('solucion')
-        print(self.lista_Trans) 
                 

@@ -19,9 +19,12 @@ class Windows:
         self.view = Tk()
         self.automataAFD = Afd()
         self.control = Controller()
-        self.grafo = Graph()
+        
+        
         self.automataFND = Afnd()
+        
         self.grafico = Graph()
+        
         self.diseño()
         self.labelAndInput()
         self.botones()
@@ -88,19 +91,15 @@ class Windows:
             
             lista = self.control.eliminarVacios(self.control.x)
             
-            print(lista)
             
             self.automataFND.thompson(lista)
-            print(self.automataFND.lista_Trans)
-            print(self.automataFND.pila_I)
-            print(self.automataFND.pila_F)
             
             self.grafico.Conexiones(self.automataFND.lista_Trans, self.automataFND.pila_F,self.automataFND.pila_I )
 
-            self.control.postorden(Arbol)            
-            print(self.control.x)              
+                   
             #self.automataFND.thompson(self.control.x)
             #print(self.automataFND.lista_Trans)
+
 
         else:
             tkinter.messagebox.showerror("ERROR NOT FOUND",

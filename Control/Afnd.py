@@ -3,7 +3,6 @@ import sys
 class Afnd:
     
     lpos = []
-
     lista_Trans=[]
     pila_I=['n']
     pila_F=['n']	
@@ -87,11 +86,9 @@ class Afnd:
                 self.pila_I.append(cont)
                 self.pila_F.append(cont2)
                 cont = cont+2
-                cont2 = cont2+2
+                cont2 = cont+1
             elif (c == '.'):
                 self.conc()
-                cont = cont+2
-                cont2 = cont2+1
             elif (c == '|'):
                 self.union(cont,cont2)
                 cont = cont+2
@@ -103,11 +100,11 @@ class Afnd:
             elif (c == '+'):
                 self.suma(cont,cont2)
                 cont = cont+2
-                cont2 = cont2+1
+                cont2 = cont+1
             elif (c == '?'):
                 self.interrogacion(cont,cont2)
                 cont = cont+2
-                cont2 = cont2+1
+                cont2 = cont+1
             
             print()
             print(self.pila_I, 'inicial')

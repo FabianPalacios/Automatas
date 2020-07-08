@@ -54,6 +54,7 @@ class Controller:
                 arbolActual = pilaPadres.extraer()
             else:
                 raise ValueError
+      
         return arbolExpresion
     
     x= []
@@ -63,8 +64,14 @@ class Controller:
             self.postorden(arbol.obtenerHijoIzquierdo())
             self.postorden(arbol.obtenerHijoDerecho())
             self.x.append(arbol.obtenerValorRaiz())
- 
-
+        
+    def eliminarVacios(self,lista):
+        aux = 0
+        for i in lista:
+            if i == '':
+                aux = lista.index(i)
+                lista.pop(aux)
+        return lista
     
             
     

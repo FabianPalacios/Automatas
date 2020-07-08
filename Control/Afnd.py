@@ -7,10 +7,12 @@ class Afnd:
     lista_Trans=[]
     pila_I=['n']
     pila_F=['n']	
+    aux = []
     
     def suma (self,elem1, elem2):
         ini = elem1
         fin = elem2
+        
         ini1 = self.pila_I.pop()
         fin1 = self.pila_F.pop()
         
@@ -21,19 +23,32 @@ class Afnd:
         self.pila_I.append(ini)
         self.pila_F.append(fin)
         
-        
+    def  interrogacion(self,elem1, elem2):
+         ini = elem1
+         fin = elem2
+         ini1 = self.pila_I.pop()
+         fin1 = self.pila_F.pop()
+         self.lista_Trans.append([str(ini),'@',str(ini1)])
+         self.lista_Trans.append([str(fin1),'@',str(fin)])
+         self.lista_Trans.append([str(ini),'@',str(fin)])
+         self.pila_I.append(ini)
+         self.pila_F.append(fin)
     
     def klean(self, elem1, elem2):
+        print(elem1, ' - ',elem2)
+        print(self.pila_I)
+        print(self.pila_F)
         ini = elem1
         fin = elem2
         ini1 = self.pila_I.pop()
         fin1 = self.pila_F.pop()
-        print(ini,' ', fin)
-        print(ini1,' ', fin1)
         self.lista_Trans.append([str(ini),'@',str(fin)])
         self.lista_Trans.append([str(ini),'@',str(ini1)])
         self.lista_Trans.append([str(fin1),'@',str(ini1)])
         self.lista_Trans.append([str(fin1),'@',str(fin)])
+        ##fin2 = self.pila_F.pop()
+        ##self.lista_Trans.append([str(fin2),'@',str(ini1)])
+        ##self.pila_F.append(fin2)
         self.pila_I.append(ini)
         self.pila_F.append(fin)
         
@@ -53,7 +68,7 @@ class Afnd:
         self.lista_Trans.append([str(f2),'@',str(f)])
         self.pila_I.append(inicio)
         self.pila_F.append(f)
-    
+        
     def conc(self):
         ini1 = self.pila_I.pop()
         ini2 = self.pila_I.pop()
@@ -62,6 +77,8 @@ class Afnd:
         self.lista_Trans.append([str(fin2),'@',str(ini1)])
         self.pila_I.append(ini2)
         self.pila_F.append(fin1)
+    
+    
         
     def thompson(self, cadena):
         cont  =0
@@ -72,9 +89,11 @@ class Afnd:
                 self.pila_I.append(cont)
                 self.pila_F.append(cont2)
                 cont = cont+2
-                cont2 = cont+1
+                cont2 = cont2+2
             elif (c == '.'):
                 self.conc()
+                cont = cont+2
+                cont2 = cont2+1
             elif (c == '|'):
                 self.union(cont,cont2)
                 cont = cont+2
@@ -87,4 +106,33 @@ class Afnd:
                 self.suma(cont,cont2)
                 cont = cont+2
                 cont2 = cont2+1
+            elif (c == '?'):
+                self.interrogacion(cont,cont2)
+                cont = cont+2
+                cont2 = cont2+1
+    
+    
+    def thompsonAfnd (self,cadena):
+        cont = 0
+        cont2 = 0
+        for c in cadena:
+            print('pila -> ',self.aux)
+            if ((ord(c)>=97 and ord(c)<=122) or (ord(c)>=65 and ord(c)<=90) or (ord(c)>=48 and ord(c)<=57)):      
+                self.aux.append([c]) 
+                cont = cont
+                cont2 = cont2+1
+                self.pila_I.append(cont)
+                self.pila_F.append(cont2)
+                cont = cont+2
+                cont2 = cont2+1
+            elif (c == '.'):
+                a1 = self.aux.pop()
+                a2 = self.aux.pop()
                 
+                self.conc(a1,a2)    
+                
+
+        
+        
+                
+        

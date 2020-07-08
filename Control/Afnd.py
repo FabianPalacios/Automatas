@@ -45,12 +45,11 @@ class Afnd:
         fin2 = self.pila_F.pop()
         self.lista_Trans.append([str(ini),'@',str(fin)])
         self.lista_Trans.append([str(ini),'@',str(ini2)])
-        self.lista_Trans.append([str(fin1),'@',str(ini2)])
-        self.lista_Trans.append([str(fin2),'@',str(fin)])
-        
-
+        self.lista_Trans.append([str(fin2),'@',str(ini2)])   
+        self.lista_Trans.append([str(fin2),'@',str(fin)])        
+        self.lista_Trans.append([str(fin),'@',str(ini1)])        
         self.pila_I.append(ini)
-        self.pila_F.append(fin)
+        self.pila_F.append(fin1)
         
 # OR(|) CORREGIDO    
     def union(self,elem1,elem2):
@@ -108,11 +107,4 @@ class Afnd:
                 cont = cont+2
                 cont2 = cont+1
             
-            #print()
-            #print(self.pila_I, 'inicial')
-            #print()
-            #print(self.pila_F, 'final')
-        #print()
-        #print('solucion')
-        #print(self.lista_Trans) 
                 

@@ -4,7 +4,7 @@ class Graph:
     
     
     def __init__ (self):
-        self.graph = graphviz.Digraph('finite_state_machine', filename='fsm.gv')
+        self.graph = graphviz.Digraph('finite_state_machine', filename='fsm.gv',format='png')
         self.graph.attr(rankdir='LR', size='8,5')
         
     

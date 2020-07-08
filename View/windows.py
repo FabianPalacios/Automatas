@@ -19,9 +19,13 @@ class Windows:
         self.view = Tk()
         self.automataAFD = Afd()
         self.control = Controller()
+        
         self.grafo = Graph()
+        
         self.automataFND = Afnd()
+        
         self.grafico = Graph()
+        
         self.diseño()
         self.labelAndInput()
         self.botones()
@@ -97,8 +101,7 @@ class Windows:
             
             self.grafico.Conexiones(self.automataFND.lista_Trans, self.automataFND.pila_F,self.automataFND.pila_I )
 
-            self.control.postorden(Arbol)            
-            print(self.control.x)              
+                   
             #self.automataFND.thompson(self.control.x)
             #print(self.automataFND.lista_Trans)
 

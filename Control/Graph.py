@@ -1,12 +1,9 @@
 import graphviz
 
-from Control.Controller import Controller
-
 class Graph:
     
     
     def __init__ (self):
-        self.control = Controller()
         self.graph = graphviz.Digraph('finite_state_machine', filename='fsm.gv')
         self.graph.attr(rankdir='LR', size='8,5')
         

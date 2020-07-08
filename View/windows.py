@@ -3,6 +3,8 @@ from tkinter import *
 import tkinter as tk
 from Control.Controller import Controller
 from Control.Afnd import Afnd
+from Control.Afd import Afd
+
 
 from Control.Graph import Graph
 import tkinter.messagebox
@@ -15,7 +17,9 @@ class Windows:
 # Metodo que crea una ventana e inserta un panel de trabajo
     def ventana(self):
         self.view = Tk()
+        self.automataAFD = Afd()
         self.control = Controller()
+        self.grafo = Graph()
         self.automataFND = Afnd()
         self.grafico = Graph()
         self.diseño()
@@ -61,6 +65,10 @@ class Windows:
     def accion(self):
         # llamado de funcion para separar el lenguje
         variableSeparada = self.control.separadoLenguaje(self.variable_1.get())        
+        # separado acciones 
+        varSeparadaAccion = self.control.separadoLenguaje(self.variable_2.get())
+        
+        
         # Retorno validacion correccion sintaxis
         validador = self.control.validacionLexico(variableSeparada,self.variable_3.get())
         self.accionValidacion(validador)
@@ -73,6 +81,7 @@ class Windows:
         if bandera:
             exprecion = self.variable_3.get()
             Arbol = self.control.construirArbolAnalisis(exprecion)
+
             print(self.variable_3.get())
             self.control.postorden(Arbol)
                    
@@ -87,6 +96,12 @@ class Windows:
             print(self.automataFND.pila_F)
             
             self.grafico.Conexiones(self.automataFND.lista_Trans, self.automataFND.pila_F,self.automataFND.pila_I )
+
+            self.control.postorden(Arbol)            
+            print(self.control.x)              
+            #self.automataFND.thompson(self.control.x)
+            #print(self.automataFND.lista_Trans)
+
         else:
             tkinter.messagebox.showerror("ERROR NOT FOUND",
                                          "LA EXPRECIÓN NO CONCUERDA CON EL LENGUAJE O TIENE UN CARACTER ESPECIAL NO DEFINIDO")
@@ -95,7 +110,17 @@ class Windows:
     def ayuda1(self):
         tkinter.messagebox.showinfo("AYUDA ALFABETO",
                                          "EL ALFABETO DEBE SER ESCRITO SIN ESTACIO Y PRECEDIDO DE RAYA AL MEDIO O GUIÓN."+'\n\n'+"EJEMPLO:"
-                                         +"   A - B - C - D - E - F")
+                                         +"   A - B - C - D - E - F") 
+        #self.automataAFD.creatorAFD('0',0)
+        self.automataFND.thompson(self.control.x)
+        lista = self.automataFND.lista_Trans
+        aceptacion = self.automataFND.pila_F
+        inicial = self.automataFND.pila_I
+        print()
+        self.grafo.Conexiones(lista, aceptacion, inicial)
+    
+        
+        
     def ayuda2(self):
         tkinter.messagebox.showinfo("AYUDA EXPRECION REGULAR ",
                                          "CARACTERES ESPECILAES: ' ( ', ' ) ', ' + ', ' ? ', ' * ' , ' | ', ' . ', ' & '."+"\n\n"+
@@ -104,7 +129,6 @@ class Windows:
                                          "                  ( ( A | ( B . C ) )"+'\n'
                                          "                  ( ( C | ( ( D . E ) | C ) ) . D )" + '\n' 
                                          "                  ( ( A | ( B . C ) ) . ( ( C | ( ( D . E ) | C ) ) . D ) )")   
-        
 
 
        

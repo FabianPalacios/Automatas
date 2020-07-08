@@ -1,8 +1,10 @@
 class ArbolBinario:
+    
     def __init__(self,objetoRaiz):
         self.clave = objetoRaiz
         self.hijoIzquierdo = None
         self.hijoDerecho = None
+        
 
     def insertarIzquierdo(self,nuevoNodo):
         if self.hijoIzquierdo == None:
@@ -31,6 +33,8 @@ class ArbolBinario:
 
     def obtenerValorRaiz(self):
         return self.clave
+    
+
     
 
 

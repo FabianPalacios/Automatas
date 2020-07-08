@@ -54,14 +54,12 @@ class Afnd:
         
     
     def union(self,elem1,elem2):
-        ini = elem1
-        fin = elem2
+        inicio = elem1
+        f = elem2 
         ini1 = self.pila_I.pop()
         ini2 = self.pila_I.pop()
         f1 = self.pila_F.pop()
         f2 = self.pila_F.pop()
-        inicio = ini
-        f = fin
         self.lista_Trans.append([str(inicio),'@',str(ini1)])
         self.lista_Trans.append([str(inicio),'@',str(ini2)])
         self.lista_Trans.append([str(f1),'@',str(f)])
@@ -97,11 +95,11 @@ class Afnd:
             elif (c == '|'):
                 self.union(cont,cont2)
                 cont = cont+2
-                cont2 = cont2+1
+                cont2 = cont+1
             elif (c == '*'):
                 self.klean(cont,cont2)
                 cont = cont+2
-                cont2 = cont2+1
+                cont2 = cont+1
             elif (c == '+'):
                 self.suma(cont,cont2)
                 cont = cont+2
@@ -110,29 +108,12 @@ class Afnd:
                 self.interrogacion(cont,cont2)
                 cont = cont+2
                 cont2 = cont2+1
-    
-    
-    def thompsonAfnd (self,cadena):
-        cont = 0
-        cont2 = 0
-        for c in cadena:
-            print('pila -> ',self.aux)
-            if ((ord(c)>=97 and ord(c)<=122) or (ord(c)>=65 and ord(c)<=90) or (ord(c)>=48 and ord(c)<=57)):      
-                self.aux.append([c]) 
-                cont = cont
-                cont2 = cont2+1
-                self.pila_I.append(cont)
-                self.pila_F.append(cont2)
-                cont = cont+2
-                cont2 = cont2+1
-            elif (c == '.'):
-                a1 = self.aux.pop()
-                a2 = self.aux.pop()
+            
+            print()
+            print(self.pila_I, 'inicial')
+            print()
+            print(self.pila_F, 'final')
+        print()
+        print('solucion')
+        print(self.lista_Trans) 
                 
-                self.conc(a1,a2)    
-                
-
-        
-        
-                
-        

@@ -17,7 +17,6 @@ class Windows:
 # Metodo que crea una ventana e inserta un panel de trabajo
     def ventana(self):
         self.view = Tk()
-        self.automataAFD = Afd()
         self.control = Controller()        
         self.automataFND = Afnd()        
         self.grafico = Graph()        
@@ -86,15 +85,15 @@ class Windows:
                    
             
             lista = self.control.eliminarVacios(self.control.x)
-            
-            
             self.automataFND.thompson(lista)
-            
             self.grafico.Conexiones(self.automataFND.lista_Trans, self.automataFND.pila_F,self.automataFND.pila_I )
+            
+            
+            self.automataAFD = Afd(self.automataFND.pila_I.pop(), self.automataFND.lista_Trans)
+            print(self.automataAFD.estados)
+            
+            
 
-                   
-            #self.automataFND.thompson(self.control.x)
-            #print(self.automataFND.lista_Trans)
 
 
         else:
@@ -105,16 +104,7 @@ class Windows:
     def ayuda1(self):
         tkinter.messagebox.showinfo("AYUDA ALFABETO",
                                          "EL ALFABETO DEBE SER ESCRITO SIN ESTACIO Y PRECEDIDO DE RAYA AL MEDIO O GUIÓN."+'\n\n'+"EJEMPLO:"
-                                         +"   A - B - C - D - E - F") 
-        #self.automataAFD.creatorAFD('0',0)
-        self.automataFND.thompson(self.control.x)
-        lista = self.automataFND.lista_Trans
-        aceptacion = self.automataFND.pila_F
-        inicial = self.automataFND.pila_I
-        print()
-        self.grafo.Conexiones(lista, aceptacion, inicial)
-    
-        
+                                         +"   A - B - C - D - E - F")       
         
     def ayuda2(self):
         tkinter.messagebox.showinfo("AYUDA EXPRECION REGULAR ",

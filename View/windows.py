@@ -86,11 +86,13 @@ class Windows:
             
             lista = self.control.eliminarVacios(self.control.x)
             self.automataFND.thompson(lista)
-            self.grafico.Conexiones(self.automataFND.lista_Trans, self.automataFND.pila_F,self.automataFND.pila_I )
-            
+            self.grafico.Conexiones(self.automataFND.lista_Trans, self.automataFND.pila_F, self.automataFND.pila_I )
+      
             
             self.automataAFD = Afd(self.automataFND.pila_I.pop(), self.automataFND.lista_Trans)
-            print(self.automataAFD.estados)
+            self.automataAFD.estadodeAceptacion(self.automataFND.pila_F.pop())
+            print(self.automataAFD.estadoAceptacion)
+            self.grafico.Conexiones(self.automataAFD.grafoAFD, self.automataAFD.estadoAceptacion,self.automataAFD.estadoInicial)
             
             
 

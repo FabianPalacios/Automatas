@@ -5,7 +5,10 @@ class Afd:
     global grafo
     global biblioteca
     global recorridoLanda
-    
+    cont = 65
+    cont2 = 1
+    estadoInicial = []
+    estadoAceptacion = []
     #el inicial lo voy a menter en el init
     def __init__(self,inicial, recorrido):
         self.grafo = recorrido
@@ -14,84 +17,79 @@ class Afd:
         self.recorridoLanda.append(inicial)        
         self.estados = self.estado()
         self.listaPopTupla = []
-        self.creatorAFD(inicial)
+        self.arregloRecorridos = []
+        self.grafoAFD = []
+        self.recorridoInicial(inicial)   
+        self.creatorAFD(self.recorridoLanda)
         
+    def recorridoInicial(self,inicial):
+        liss = []
+        liss.append(inicial)
+        self.recorridosLambdaEstados(liss)
+        self.biblioteca[chr(self.cont)] = self.recorridoLanda
+        self.estadoInicial.append(chr(self.cont))
+        self.cont = self.cont+1
+        self.arregloRecorridos.append(self.recorridoLanda)
+        self.listaPopTupla.append(self.recorridoLanda)
         
-        
-    def creatorAFD(self,inicial):
-        self.lambdas(inicial,0)
-        self.recorridoEstado()
-        
-        
-
-        
-    # SACA EL RECORRIDO DE LANDAS DE EL ESTADO INICIAL
-    def lambdas(self,inicial, salida, recorridos = []):        
-        if salida == 0:           
-            for x in self.grafo:
-                if str(inicial) == str(x[0]):
-                    if str(x[1]) == '@':
-                        recorridos.append(x[2]) 
-                        self.recorridoLanda.append(x[2])                    
-            if recorridos == []:
-                self.lambdas(inicial,1,recorridos)
-            else:
-                ini = recorridos.pop(0)
-                self.lambdas(ini, salida, recorridos)                
+    def creatorAFD(self, arreglo):       
+               
+        parte = arreglo
+        self.recorridoLanda = [] 
+        lista = []       
+        for x in self.estados:
+            for j in x:
+                if j[0] in parte:
+                    lista.append(j[2])
+                    self.recorridoLanda.append(j[2])            
+            self.recorridosLambdaEstados(lista)
             
-        elif salida == 1:
-            self.biblioteca[chr(65)] = self.recorridoLanda
-            self.recorridoLanda = []
-            self.listaPopTupla.append(list(self.biblioteca.items()))
-            print(list(self.biblioteca.items()))
-    
-    # SACA LOS RECORRIDOS SEGUN LOS ESTADO Y LAS LAMBDAS
-    def recorridoEstado(self):
-        lista = []
-        if len(self.biblioteca.values()) > 1:
-            print()
-        else:
-            lis = self.listaPopTupla.pop()
-            tupla = lis.pop()
-            for x in self.estados:
-                for j in x:
-                    if j[0] in tupla[1]:
-                        lista.append(j[2])
-                        
-                print(lista)
-                
-                    
-                self.recorridosLambdaEstados(lista)                        
-                print(self.recorridoLanda)
-                self.recorridoLanda = []
-
-    
-    # RECORRIDOS LAMBDA SEGUN LOS ESTADOS
-    def recorridosLambdaEstados(self, lista):
+            if self.recorridoLanda != []:
+                self.auxiliar(parte, j[1], self.recorridoLanda)
+            self.recorridoLanda = []           
+        self.evaluarEscape()
+            
+    def evaluarEscape(self):
+        digito = len(self.biblioteca)-1
+        if self.cont2 <= digito:
+            listaTuplas = list(self.biblioteca.items()) 
+            tupla = listaTuplas[self.cont2]
+            self.cont2 = self.cont2+1
+            self.creatorAFD(tupla[1])
+            
         
+    def auxiliar(self, partes, estado, recorrido):
+        
+        #print(partes,' - ', estado,' - ', recorrido)        
+        tuplas = list(self.biblioteca.items())        
+        if recorrido not in self.arregloRecorridos:
+            self.arregloRecorridos.append(recorrido)
+            self.biblioteca[chr(self.cont)] = self.recorridoLanda
+            self.cont = self.cont+1            
+            for x in tuplas:
+                if x[1] == partes:
+                    self.grafoAFD.append([x[0],estado,chr(self.cont-1)])
+        else:
+            for x in tuplas:
+                if x[1] == recorrido:
+                    repetido = x[0]
+                if x[1] == partes:
+                    anterior = x[0]
+            self.grafoAFD.append([anterior,estado,repetido])         
+
+        
+    # RECORRIDOS LAMBDA SEGUN LOS ESTADOS
+    def recorridosLambdaEstados(self, lista):        
         if lista != []:
             inicial = lista.pop()           
             for x in self.grafo:
                 if str(inicial) == str(x[0]):
                     if str(x[1]) == '@':
                         lista.append(x[2]) 
-                        self.recorridoLanda.append(x[2])
-                    else:
-                        
-                        
-                self.recorridosLambdaEstados(lista)
-        
-                        
+                        self.recorridoLanda.append(x[2])                                       
+                self.recorridosLambdaEstados(lista)               
                 
-            
-        
-            
-    
-    
-    
-    
-    
-    
+                
     # SACA TODOS LOS ESTADOS EN ORDEN Y EN LISTA
     def estado(self):
         lista = []
@@ -111,6 +109,14 @@ class Afd:
             listaU.append(aux)
             aux = []        
         return listaU
-                
+    
+    def estadodeAceptacion(self,acepta):
+        tuplas = list(self.biblioteca.items())
+        print(acepta, 'acepta')
+        for x in tuplas:
+            print(x[1])
+            if str(acepta) in x[1]:
+                self.estadoAceptacion.append(x[0])
         
+                
         

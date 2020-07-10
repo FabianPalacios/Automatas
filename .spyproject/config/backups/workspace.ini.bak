@@ -6,5 +6,9 @@ save_non_project_files = False
 
 [main]
 version = 0.2.0
+<<<<<<< HEAD
 recent_files = ['View\\Windows.py', 'Control\\Afnd.py', 'Control\\Afd.py', 'View\\main.py', 'Clases\\arbolBinario.py', 'Control\\Controller.py', 'Control\\Graph.py']
+=======
+recent_files = ['View\\main.py', 'Control\\Afd.py', 'Control\\Controller.py', 'Control\\Graph.py', 'View\\Windows.py', 'Control\\Afnd.py']
+>>>>>>> 056f4fee3c8fcaeefa1dfaf617307296d28aa661
 

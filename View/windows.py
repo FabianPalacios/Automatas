@@ -17,14 +17,10 @@ class Windows:
 # Metodo que crea una ventana e inserta un panel de trabajo
     def ventana(self):
         self.view = Tk()
-        self.control = Controller()
-        
-        self.grafo = Graph()
-        
-        self.automataFND = Afnd()
-        
-        self.grafico = Graph()
-        
+
+        self.control = Controller()        
+        self.automataFND = Afnd()        
+        self.grafico = Graph()        
         self.diseño()
         self.labelAndInput()
         self.botones()
@@ -90,17 +86,17 @@ class Windows:
                    
             
             lista = self.control.eliminarVacios(self.control.x)
-            
-            print(lista)
-            
             self.automataFND.thompson(lista)
-            print(self.automataFND.lista_Trans)
-            print(self.automataFND.pila_I)
-            print(self.automataFND.pila_F)
+            self.grafico.Conexiones(self.automataFND.lista_Trans, self.automataFND.pila_F, self.automataFND.pila_I )
+      
             
-            self.grafico.Conexiones(self.automataFND.lista_Trans, self.automataFND.pila_F.pop(0),self.automataFND.pila_I.pop(0))
+            self.automataAFD = Afd(self.automataFND.pila_I.pop(), self.automataFND.lista_Trans)
+            self.automataAFD.estadodeAceptacion(self.automataFND.pila_F.pop())
+            print(self.automataAFD.estadoAceptacion)
+            self.grafico.Conexiones(self.automataAFD.grafoAFD, self.automataAFD.estadoAceptacion,self.automataAFD.estadoInicial)
+            
+            
 
-            
 
         else:
             tkinter.messagebox.showerror("ERROR NOT FOUND",
@@ -110,9 +106,9 @@ class Windows:
     def ayuda1(self):
         tkinter.messagebox.showinfo("AYUDA ALFABETO",
                                          "EL ALFABETO DEBE SER ESCRITO SIN ESTACIO Y PRECEDIDO DE RAYA AL MEDIO O GUIÓN."+'\n\n'+"EJEMPLO:"
-                                         +"   A - B - C - D - E - F") 
 
-        
+                                         +"   A - B - C - D - E - F")       
+
         
     def ayuda2(self):
         tkinter.messagebox.showinfo("AYUDA EXPRECION REGULAR ",

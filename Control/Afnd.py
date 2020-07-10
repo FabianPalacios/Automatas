@@ -47,25 +47,23 @@ class Afnd:
          self.pila_F.append(fin1)
     
     def klean(self, elem1, elem2):
+
         ini = elem1
         fin = elem2 
         
         ini1 = self.pila_I.pop()
         fin1 = self.pila_F.pop()
         ini2 = self.pila_I.pop()
-        fin2 = self.pila_F.pop()
-        
+        fin2 = self.pila_F.pop()        
         self.lista_Trans.append([str(ini),'@',str(fin)])
         self.lista_Trans.append([str(ini),'@',str(ini2)])
         self.lista_Trans.append([str(fin2),'@',str(ini2)])   
-        self.lista_Trans.append([str(fin2),'@',str(fin)])
-        
+        self.lista_Trans.append([str(fin2),'@',str(fin)])        
         self.lista_Trans.append([str(fin),'@',str(ini1)])
-        
         self.pila_I.append(ini)
         self.pila_F.append(fin1)
         
-    
+# OR(|) CORREGIDO    
     def union(self,elem1,elem2):
         inicio = elem1
         f = elem2 
@@ -79,7 +77,8 @@ class Afnd:
         self.lista_Trans.append([str(f2),'@',str(f)])
         self.pila_I.append(inicio)
         self.pila_F.append(f)
-        
+
+# CONCATENACION CORREGIDA    
     def conc(self):
         ini1 = self.pila_I.pop()
         ini2 = self.pila_I.pop()
@@ -119,4 +118,4 @@ class Afnd:
                 self.interrogacion(cont,cont2)
                 cont = cont+2
                 cont2 = cont+1
-            
+

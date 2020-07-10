@@ -28,9 +28,6 @@ class Afnd:
         self.pila_F.append(fin1)
         
     def  interrogacion(self,elem1, elem2):
-         print(elem1, ' - ',elem2)
-         print(self.pila_I)
-         print(self.pila_F)
          
          ini = elem1
          fin = elem2
@@ -123,11 +120,3 @@ class Afnd:
                 cont = cont+2
                 cont2 = cont+1
             
-            #print()
-            #print(self.pila_I, 'inicial')
-            #print()
-            #print(self.pila_F, 'final')
-        #print()
-        #print('solucion')
-        ##print(self.lista_Trans) 
-                

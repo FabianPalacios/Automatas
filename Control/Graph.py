@@ -9,12 +9,13 @@ class Graph:
         
     
     def Conexiones(self, lista, aceptacion, inicial):
+       print(inicial, ' - ', aceptacion)
        self.graph.node('ini', shape="point")
-       self.graph.edge('ini',str(inicial[1]))
+       self.graph.edge('ini',str(inicial))
        
        
        self.graph.attr('node', shape='doublecircle')
-       self.graph.node(str(aceptacion[1]))
+       self.graph.node(str(aceptacion))
        
        
        

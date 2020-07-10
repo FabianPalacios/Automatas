@@ -4,20 +4,20 @@ class Afd:
     
     
     #el inicial lo voy a menter en el init
+    def  __init__(self,inicial, recorrido):
+        self.grafo = recorrido
+        self.biblioteca = {}
+        self.recorridoLanda = []
+        self.recorridoLanda.append(inicial)
     
     
-    
-    biblioteca = {}
-    recorridoLanda = []
     def creatorAFD(self,inicial, salida, recorridos = []):         
            
-        recorrido = [['0','@','1'],['1','@','2'],['0','@','3'],['3','b','4']
-                     ,['2','@','5'],['5','a','6']]
-        
+      
         if salida == 0:
 
         
-            for x in recorrido:
+            for x in self.grafo:
                 if inicial == x[0]:
                     if x[1] == '@':
                         recorridos.append(x[2]) 

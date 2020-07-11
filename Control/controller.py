@@ -73,5 +73,4 @@ class Controller:
                 lista.pop(aux)
         return lista
     
-       
 

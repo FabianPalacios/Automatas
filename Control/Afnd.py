@@ -115,6 +115,4 @@ class Afnd:
                 self.interrogacion(cont,cont2)
                 cont = cont+2
                 cont2 = cont+1
-            
 
-                

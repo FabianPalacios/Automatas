@@ -9,6 +9,7 @@ class Afd:
     cont2 = 1
     estadoInicial = []
     estadoAceptacion = []
+
     
     # INIT CREACION OBJETO CON EL ESTADO INICIAL Y EL GRAFO
     def __init__(self,inicial, recorrido):

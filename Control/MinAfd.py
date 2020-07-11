@@ -49,8 +49,6 @@ class MinAfd:
             for e in lista2:
                 listaTuplas.append((x,e))
             lista2.pop(0)
-        print(lista1)
-        print(lista2)
         # LLENADO MATRIZ  
         self.matrizllenado(listaTuplas)
         

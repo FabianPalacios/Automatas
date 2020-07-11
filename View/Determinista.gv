@@ -3,8 +3,6 @@ digraph Determinista {
 	ini [shape=point]
 	ini -> A
 	node [shape=doublecircle]
-	C
-	node [shape=doublecircle]
 	D
 	node [shape=circle]
 	A -> B [label=A]
@@ -12,4 +10,8 @@ digraph Determinista {
 	A -> D [label=C]
 	B -> B [label=A]
 	B -> C [label=B]
+	B -> D [label=C]
+	C -> B [label=A]
+	C -> C [label=B]
+	C -> D [label=C]
 }

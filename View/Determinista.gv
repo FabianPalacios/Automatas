@@ -7,9 +7,9 @@ digraph Determinista {
 	node [shape=doublecircle]
 	D
 	node [shape=circle]
-	A -> B [label=a]
-	A -> C [label=b]
-	A -> D [label=c]
-	B -> B [label=a]
-	B -> C [label=b]
+	A -> B [label=A]
+	A -> C [label=B]
+	A -> D [label=C]
+	B -> B [label=A]
+	B -> C [label=B]
 }

@@ -59,27 +59,24 @@ class Windows:
                         command= self.ayuda2).place(x=335,y=103)
         
         boton4 = Button(self.panel, text="No Determinista", width=13,height=2, background="SkyBlue2", 
-                        command= self.NoDeterminista).place(x=90,y=220)
+                        command= self.NoDeterminista, state=tk.DISABLED).place(x=90,y=220)
         
         boton5 = Button(self.panel, text="Determinista", width=13,height=2, background="SkyBlue2", 
-                        command= self.Determinista).place(x=200,y=220)
+                        command= self.Determinista, state=tk.DISABLED).place(x=200,y=220)
 
-        boton5 = Button(self.panel, text="Miniminista", width=13,height=2, background="SkyBlue2", 
-                        command= self.Minimizacion).place(x=310,y=220)
-    
+        boton6 = Button(self.panel, text="Miniminista", width=13,height=2, background="SkyBlue2", 
+                        command= self.Minimizacion, state=tk.DISABLED).place(x=310,y=220)
     # Evento de boton de accion
     def accion(self):
         # llamado de funcion para separar el lenguje
         variableSeparada = self.control.separadoLenguaje(self.variable_1.get())        
         # separado acciones 
-        varSeparadaAccion = self.control.separadoLenguaje(self.variable_2.get())
-        
+        varSeparadaAccion = self.control.separadoLenguaje(self.variable_2.get())        
         
         # Retorno validacion correccion sintaxis
         validador = self.control.validacionLexico(variableSeparada,self.variable_3.get())
-        self.accionValidacion(validador)
-        
-        
+        self.accionValidacion(validador)        
+           
         
     # Funcion para realizar acciones despues de la validacion
     def accionValidacion(self, bandera):

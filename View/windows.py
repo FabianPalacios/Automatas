@@ -4,9 +4,10 @@ import tkinter as tk
 from Control.Controller import Controller
 from Control.Afnd import Afnd
 from Control.Afd import Afd
-
+from Control.MinAfd import MinAfd
 
 from Control.Graph import Graph
+
 import tkinter.messagebox
 
 class Windows:     
@@ -19,8 +20,7 @@ class Windows:
         self.view = Tk()
 
         self.control = Controller()        
-        self.automataFND = Afnd()        
-        self.grafico = Graph()        
+        self.automataFND = Afnd()      
         self.diseño()
         self.labelAndInput()
         self.botones()
@@ -49,16 +49,23 @@ class Windows:
               
         # Botones         
     def botones(self):
-        boton1 = Button(self.panel, text="ACEPTAR", width=8,height=2, background="SkyBlue2", 
+        boton1 = Button(self.panel, text="ACEPTAR", width=20,height=2, background="SkyBlue2", 
                         command= self.accion).place(x=180,y=150)
         
         boton2 = Button(self.panel, text="?", width=2,height=1, background="SkyBlue2", 
                         command= self.ayuda1).place(x=335,y=39)
-        
+
         boton3 = Button(self.panel, text="?", width=2,height=1, background="SkyBlue2", 
                         command= self.ayuda2).place(x=335,y=103)
+        
+        boton4 = Button(self.panel, text="No Determinista", width=13,height=2, background="SkyBlue2", 
+                        command= self.NoDeterminista).place(x=90,y=220)
+        
+        boton5 = Button(self.panel, text="Determinista", width=13,height=2, background="SkyBlue2", 
+                        command= self.Determinista).place(x=200,y=220)
 
-
+        boton5 = Button(self.panel, text="Miniminista", width=13,height=2, background="SkyBlue2", 
+                        command= self.Minimizacion).place(x=310,y=220)
     
     # Evento de boton de accion
     def accion(self):
@@ -81,22 +88,9 @@ class Windows:
             exprecion = self.variable_3.get()
             Arbol = self.control.construirArbolAnalisis(exprecion)
 
-            print(self.variable_3.get())
             self.control.postorden(Arbol)
                    
-            
-            lista = self.control.eliminarVacios(self.control.x)
-            self.automataFND.thompson(lista)
-            self.grafico.Conexiones(self.automataFND.lista_Trans, self.automataFND.pila_F, self.automataFND.pila_I )
-      
-            
-            self.automataAFD = Afd(self.automataFND.pila_I.pop(), self.automataFND.lista_Trans)
-            self.automataAFD.estadodeAceptacion(self.automataFND.pila_F.pop())
-            print(self.automataAFD.estadoAceptacion)
-            self.grafico.Conexiones(self.automataAFD.grafoAFD, self.automataAFD.estadoAceptacion,self.automataAFD.estadoInicial)
-            
-            
-
+            tkinter.messagebox.showinfo("EXPRECION RECULAR CARGADA","LA EXPRECION REGULAR SE HA CARGADO CORRECTAMENTE")
 
         else:
             tkinter.messagebox.showerror("ERROR NOT FOUND",
@@ -117,11 +111,40 @@ class Windows:
                                          +"EJEMPLOS: "+'\n'+
                                          "                  ( ( A | ( B . C ) )"+'\n'
                                          "                  ( ( C | ( ( D . E ) | C ) ) . D )" + '\n' 
+        
                                          "                  ( ( A | ( B . C ) ) . ( ( C | ( ( D . E ) | C ) ) . D ) )")   
 
+    inicial = []
+    final = []
+    def NoDeterminista(self):
+    
+        lista = self.control.eliminarVacios(self.control.x)
+        self.automataFND.thompson(lista)
+        listaThompson = self.automataFND.lista_Trans
 
-       
+        if (len(self.automataFND.pila_I) == 2) and (len(self.automataFND.pila_F) == 2):
+            self.inicial.append(self.automataFND.pila_I.pop())
+            self.final.append(self.automataFND.pila_F.pop())     
+        else: 
+            self.inicial.append(self.automataFND.pila_I)
+            self.final.append(self.automataFND.pila_F)
+
         
+        self.grafico = Graph('Thompson')  
+        self.grafico.Conexiones(listaThompson, self.final, self.inicial)
         
     
+    def Determinista(self):
+        
+        inicial =  self.inicial[0]
+        final = self.final[0]
+        
+        self.automataAFD = Afd(inicial, self.automataFND.lista_Trans)
+        self.automataAFD.estadodeAceptacion(final)
+        
+        self.grafico = Graph('Determinista')   
+        self.grafico.Conexiones(self.automataAFD.grafoAFD, self.automataAFD.estadoAceptacion, self.automataAFD.estadoInicial)
 
+
+    def Minimizacion(self):
+        self.MinAfd = MinAfd(self.automataAFD.estadoAceptacion, self.automataAFD.grafoAFD, self.automataAFD.biblioteca)

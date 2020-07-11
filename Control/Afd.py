@@ -113,9 +113,7 @@ class Afd:
     
     def estadodeAceptacion(self,acepta):
         tuplas = list(self.biblioteca.items())
-        print(acepta, 'acepta')
         for x in tuplas:
-            print(x[1])
             if str(acepta) in x[1]:
                 self.estadoAceptacion.append(x[0])
         

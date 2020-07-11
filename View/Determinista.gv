@@ -1,0 +1,15 @@
+digraph Determinista {
+	rankdir=LR size="8,5"
+	ini [shape=point]
+	ini -> A
+	node [shape=doublecircle]
+	C
+	node [shape=doublecircle]
+	D
+	node [shape=circle]
+	A -> B [label=a]
+	A -> C [label=b]
+	A -> D [label=c]
+	B -> B [label=a]
+	B -> C [label=b]
+}

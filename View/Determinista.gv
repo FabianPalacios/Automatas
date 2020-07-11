@@ -3,15 +3,13 @@ digraph Determinista {
 	ini [shape=point]
 	ini -> A
 	node [shape=doublecircle]
+	C
+	node [shape=doublecircle]
 	D
 	node [shape=circle]
-	A -> B [label=A]
-	A -> C [label=B]
-	A -> D [label=C]
-	B -> B [label=A]
-	B -> C [label=B]
-	B -> D [label=C]
-	C -> B [label=A]
-	C -> C [label=B]
-	C -> D [label=C]
+	A -> B [label=a]
+	A -> C [label=b]
+	A -> D [label=c]
+	B -> B [label=a]
+	B -> C [label=b]
 }

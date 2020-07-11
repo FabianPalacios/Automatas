@@ -20,8 +20,7 @@ class Afnd:
         
         self.lista_Trans.append([str(ini),'@',str(ini2)])
         self.lista_Trans.append([str(fin2),'@',str(ini2)])
-        self.lista_Trans.append([str(fin2),'@',str(fin)])
-        
+        self.lista_Trans.append([str(fin2),'@',str(fin)])        
         self.lista_Trans.append([str(fin),'@',str(ini1)])
         
         self.pila_I.append(ini)
@@ -86,9 +85,7 @@ class Afnd:
         fin2 = self.pila_F.pop()
         self.lista_Trans.append([str(fin2),'@',str(ini1)])
         self.pila_I.append(ini2)
-        self.pila_F.append(fin1)
-    
-    
+        self.pila_F.append(fin1)   
         
     def thompson(self, cadena):
         cont  =0

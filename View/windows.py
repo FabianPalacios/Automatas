@@ -4,6 +4,7 @@ import tkinter as tk
 from Control.Controller import Controller
 from Control.Afnd import Afnd
 from Control.Afd import Afd
+from Control.MinAfd import MinAfd
 
 
 from Control.Graph import Graph
@@ -87,13 +88,15 @@ class Windows:
             lista = self.control.eliminarVacios(self.control.x)
             self.automataFND.thompson(lista)
             self.grafico.Conexiones(self.automataFND.lista_Trans, self.automataFND.pila_F, self.automataFND.pila_I )
+            inicial = self.automataFND.pila_I.pop()
+            final = self.automataFND.pila_F.pop()
       
             
-            self.automataAFD = Afd(self.automataFND.pila_I.pop(), self.automataFND.lista_Trans)
-            self.automataAFD.estadodeAceptacion(self.automataFND.pila_F.pop())
+            self.automataAFD = Afd(inicial, self.automataFND.lista_Trans)
+            self.automataAFD.estadodeAceptacion(final)
             print(self.automataAFD.estadoAceptacion)
-            self.grafico.Conexiones(self.automataAFD.grafoAFD, self.automataAFD.estadoAceptacion,self.automataAFD.estadoInicial)
-            
+            #self.grafico.Conexiones(self.automataAFD.grafoAFD, self.automataAFD.estadoAceptacion,self.automataAFD.estadoInicial)
+            self.MinAfd = MinAfd(self.automataAFD.estadoAceptacion,self.automataAFD.grafoAFD, self.automataAFD.biblioteca)
             
 
 

@@ -1,0 +1,13 @@
+digraph Minimizacion {
+	rankdir=LR size="8,5"
+	ini [shape=point]
+	ini -> A
+	node [shape=doublecircle]
+	CD
+	node [shape=circle]
+	A -> B [label=a]
+	A -> CD [label=b]
+	A -> CD [label=c]
+	B -> B [label=a]
+	B -> CD [label=b]
+}

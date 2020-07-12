@@ -6,5 +6,5 @@ save_non_project_files = False
 
 [main]
 version = 0.2.0
-recent_files = ['View\\main.py', 'Control\\Afd.py', 'Control\\MinAfd.py', 'View\\Windows.py', 'Control\\Graph.py', 'Control\\Afnd.py', 'Control\\Controller.py']
+recent_files = ['View\\main.py', 'Control\\Afd.py', 'Control\\MinAfd.py', 'View\\Windows.py', 'Control\\Graph.py', 'Control\\Afnd.py', 'Control\\Controller.py', 'View\\Determinista.gv']
 

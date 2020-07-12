@@ -47,7 +47,7 @@ class Windows:
         input_3 = Entry(self.panel,textvariable = self.variable_3, width=25).place(x=175, y=106)
         
               
-        # Botones         
+        # Botones  
     def botones(self):
         boton1 = Button(self.panel, text="ACEPTAR", width=20,height=2, background="SkyBlue2", 
                         command= self.accion).place(x=180,y=150)
@@ -58,24 +58,30 @@ class Windows:
         boton3 = Button(self.panel, text="?", width=2,height=1, background="SkyBlue2", 
                         command= self.ayuda2).place(x=335,y=103)
         
-        boton4 = Button(self.panel, text="No Determinista", width=13,height=2, background="SkyBlue2", 
+        self.boton4 = Button(self.panel, text="No Determinista", width=13,height=2, background="SkyBlue2", 
                         command= self.NoDeterminista, state=tk.DISABLED).place(x=90,y=220)
         
-        boton5 = Button(self.panel, text="Determinista", width=13,height=2, background="SkyBlue2", 
+        self.boton5 = Button(self.panel, text="Determinista", width=13,height=2, background="SkyBlue2", 
                         command= self.Determinista, state=tk.DISABLED).place(x=200,y=220)
 
-        boton6 = Button(self.panel, text="Miniminista", width=13,height=2, background="SkyBlue2", 
+        self.boton6 = Button(self.panel, text="Miniminista", width=13,height=2, background="SkyBlue2", 
                         command= self.Minimizacion, state=tk.DISABLED).place(x=310,y=220)
+    
+
     # Evento de boton de accion
     def accion(self):
         # llamado de funcion para separar el lenguje
         variableSeparada = self.control.separadoLenguaje(self.variable_1.get())        
         # separado acciones 
-        varSeparadaAccion = self.control.separadoLenguaje(self.variable_2.get())        
+        varSeparadaAccion = self.control.separadoLenguaje(self.variable_2.get())
         
-        # Retorno validacion correccion sintaxis
-        validador = self.control.validacionLexico(variableSeparada,self.variable_3.get())
-        self.accionValidacion(validador)        
+        if len(variableSeparada) == len(varSeparadaAccion):        
+            # Retorno validacion correccion sintaxis
+            validador = self.control.validacionLexico(variableSeparada,self.variable_3.get())
+            self.accionValidacion(validador) 
+        else:
+            tkinter.messagebox.showerror("ERROR LENGUAJE Y ACCION","LA CANTIDAD DE SIMBOLOS EN EL LENGUAJE NO COINCIDE CON LA CANTIDAD DE VALORES AGREGADOS")
+            
            
         
     # Funcion para realizar acciones despues de la validacion
@@ -88,7 +94,9 @@ class Windows:
             self.control.postorden(Arbol)
             
             tkinter.messagebox.showinfo("EXPRECION RECULAR CARGADA","LA EXPRECION REGULAR SE HA CARGADO CORRECTAMENTE")
-
+            
+            self.boton4 = Button(self.panel, text="No Determinista", width=13,height=2, background="SkyBlue2", 
+                                 command= self.NoDeterminista).place(x=90,y=220)
 
         else:
             tkinter.messagebox.showerror("ERROR NOT FOUND",
@@ -131,6 +139,9 @@ class Windows:
         self.grafico = Graph('Thompson')  
         self.grafico.Conexiones(listaThompson, self.final, self.inicial)
         
+        self.boton5 = Button(self.panel, text="Determinista", width=13,height=2, background="SkyBlue2", 
+                        command= self.Determinista).place(x=200,y=220)
+        
     
     def Determinista(self):
         
@@ -143,6 +154,10 @@ class Windows:
         self.grafico = Graph('Determinista')   
         self.grafico.Conexiones(self.automataAFD.grafoAFD, self.automataAFD.estadoAceptacion, self.automataAFD.estadoInicial)
 
+        self.boton6 = Button(self.panel, text="Miniminista", width=13,height=2, background="SkyBlue2", 
+                        command= self.Minimizacion).place(x=310,y=220)
 
     def Minimizacion(self):
         self.MinAfd = MinAfd(self.automataAFD.estadoAceptacion, self.automataAFD.grafoAFD, self.automataAFD.biblioteca)
+        self.grafico = Graph('Minimizacion')   
+        self.grafico.Conexiones(self.MinAfd.minGrafo, self.MinAfd.minAcepta,  self.MinAfd.minInicial)
